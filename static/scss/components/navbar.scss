@@ -1,0 +1,155 @@
+@use '../styles' as *;
+.navigation {
+  background-color: var(--navbar-bg);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 1000;
+  .navbar {
+    position: relative;
+    padding: rem(12);
+    .left {
+      .logo {
+        display: block;
+        img {
+          width: rem(40);
+          height: rem(40);
+        }
+      }
+      .search-form {
+        margin-left: rem(8);
+        border: 1px solid var(--green);
+        width: rem(300);
+        @include breakpoint-down(xsm) {
+          display: none;
+        }
+        @include breakpoint-up(sm) {
+          margin-left: rem(32);
+        }
+
+        input {
+          flex-grow: 1;
+          outline: transparent;
+          border: none;
+          padding: rem(8);
+          background: transparent;
+          color: var(--txt);
+        }
+        button {
+          background: transparent;
+          outline: transparent;
+          border: none;
+          cursor: pointer;
+        }
+      }
+    }
+    .right {
+      .theme {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: rem(8);
+        cursor: pointer;
+        svg {
+          fill: #28a17d;
+        }
+      }
+
+      .links {
+        li {
+          &:not(:last-child) {
+            margin-right: rem(6);
+          }
+          a {
+            .img {
+              width: rem(40);
+              height: rem(40);
+              border-radius: 50%;
+              overflow: hidden;
+              margin-right: rem(8);
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+            .user {
+              p {
+                margin: 0;
+                font-weight: 600;
+                color: var(--txt);
+              }
+              .username {
+                font-weight: 300;
+                color: var(--green);
+              }
+            }
+          }
+          svg {
+            fill: var(--green);
+          }
+        }
+        li.account {
+          a {
+            color: var(--green);
+            font-size: rem(14);
+          }
+        }
+        li.drop-down {
+          position: relative;
+          cursor: pointer;
+          svg {
+            fill: #28a17d;
+          }
+          .drop-links {
+            background-color: var(--drop-down);
+            box-shadow: 0 0 rem(12) rgba(0, 0, 0, 0.212);
+            padding: rem(12) rem(18);
+            border-radius: rem(4);
+            position: absolute;
+            right: rem(12);
+            top: rem(50);
+            opacity: 0;
+            visibility: hidden;
+            animation: fade-out 200ms forwards;
+            li {
+              &:first-child {
+                margin-bottom: rem(12);
+              }
+              a {
+                color: var(--txt);
+              }
+            }
+          }
+          .drop-links.active {
+            animation: fade-in 200ms forwards;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

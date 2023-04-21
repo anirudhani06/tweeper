@@ -1,0 +1,120 @@
+{% load static %}
+<header>
+  <div class="navigation">
+    <nav class="navbar wrapper flex flex-jc-sb flex-ai-c">
+      <div class="left flex flex-jc-s flex-ai-c">
+        <a href="{% url 'home' %}" class="logo">
+          <img src="{% static 'assets/icons/logo.png' %}" alt="" />
+        </a>
+        <form class="search-form flex flex-jc-s flex-ai-c br-4">
+          <input type="text" placeholder="Search..." name="q" />
+          <button class="flex flex-jc-s flex-ai-c">
+            <?xml version="1.0" ?><svg
+              class="bi bi-search"
+              fill="#28a17d"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
+      <div class="right flex flex-jc-sb flex-ai-c">
+        <div class="theme">
+          <svg
+            class="bi bi-moon"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"
+            />
+          </svg>
+          <svg
+            class="bi bi-sun"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
+            />
+          </svg>
+        </div>
+        <ul class="links flex flex-jc-sb flex-ai-c">
+          {% if request.user.is_authenticated %}
+          <li style="margin-right: 12px">
+            <a
+              href="{% url 'create-post' %}"
+              style="color: #28a17d; font-size: 14px"
+              >Create Post</a
+            >
+          </li>
+
+          <li>
+            <a
+              href="{% url 'profile' request.user.id %}"
+              class="flex flex-jc-sb flex-ai-c"
+            >
+              <div class="img">
+                <img src="{{request.user.avatar.url}}" alt="" />
+              </div>
+              <div class="user">
+                <p>{{request.user.first_name}}</p>
+                <small class="username">@{{request.user.username}}</small>
+              </div>
+            </a>
+            {% else %}
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 32 32"
+              style="fill: #28a17d; margin-right: 8px"
+            >
+              <title>user</title>
+              <path
+                d="M16 16c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8c0 4.411-3.589 8-8 8zM16 2c-3.309 0-6 2.691-6 6s2.691 6 6 6 6-2.691 6-6c0-3.309-2.691-6-6-6z"
+              ></path>
+              <path
+                d="M29 32h-26c-0.553 0-1-0.447-1-1v-6.884c0-1.033 0.528-2.004 1.378-2.535 7.51-4.685 17.741-4.684 25.243-0.001 0.851 0.532 1.379 1.503 1.379 2.536v6.884c0 0.553-0.447 1-1 1zM4 30h24v-5.884c0-0.349-0.168-0.671-0.439-0.84-6.866-4.286-16.252-4.289-23.124 0.001-0.27 0.168-0.438 0.49-0.438 0.839l-0 5.884z"
+              ></path>
+            </svg>
+            {% endif %}
+          </li>
+          {% if request.user.is_authenticated %}
+          <li class="drop-down">
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 32 32"
+            >
+              <title>chevron-down</title>
+              <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
+            </svg>
+            <ul class="drop-links">
+              <li><a href="{% url 'update-profile'%}">Settings</a></li>
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
+          {% else %}
+          <li class="account"><a href="{% url 'login' %}">Account</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>

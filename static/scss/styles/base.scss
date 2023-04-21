@@ -1,0 +1,56 @@
+@use './functions.scss' as *;
+@use './colors.scss' as *;
+@use './fonts.scss' as *;
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  list-style: none;
+}
+
+body {
+  height: 100vh;
+  overflow-x: hidden;
+  letter-spacing: rem(0.5);
+  font-family: sans-serif;
+  font-size: rem(12);
+  margin: 0;
+  padding: 0;
+  .username {
+    color: var(--green);
+  }
+}
+
+body.light {
+  background: var(--white2);
+  --navbar-bg: var(--white);
+  --drop-down: var(--white);
+  --txt: var(--black2);
+  --card-bg: var(--white);
+  #HOME {
+    --txt: var(--black2);
+    --sidebar-bg: var(--white);
+    --category-bg: var(--white);
+    --category-links-bg: var(--white);
+  }
+}
+
+body.dark {
+  background: var(--black2);
+  --navbar-bg: var(--black);
+  --drop-down: var(--black);
+  --txt: var(--white2);
+  --card-bg: var(--black);
+  #HOME {
+    --txt: var(--white2);
+
+    --sidebar-bg: var(--black);
+    --category-bg: var(--black);
+    --category-links-bg: var(--black);
+  }
+}

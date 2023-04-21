@@ -1,0 +1,57 @@
+@use '../styles' as *;
+#HOME {
+  .content {
+    .sidebar {
+      @include breakpoint-down(md) {
+        display: none;
+      }
+      border-radius: rem(4);
+      background-color: var(--sidebar-bg);
+      top: rem(86);
+      right: 0;
+      padding: rem(12);
+      box-shadow: 0 0 rem(12) rgba(0, 0, 0, 0.077);
+      height: rem(500);
+      .tags {
+        border-top: rem(1) solid var(--green);
+        margin-top: rem(12);
+        padding-top: rem(6);
+        .title {
+          text-align: center;
+          h3 {
+            font-weight: 600;
+            color: var(--green);
+            margin-top: 0;
+          }
+        }
+        .categories {
+          ul {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            li {
+              margin: rem(6) rem(0);
+              a {
+                border: 1px solid var(--green);
+                color: var(--green);
+                padding: rem(3) rem(8);
+                border-radius: rem(4);
+                transition: 200ms ease-in-out;
+                &:hover {
+                  background-color: var(--green);
+                  color: var(--white);
+                }
+              }
+            }
+            li.active {
+              a {
+                background-color: var(--green);
+                color: var(--white);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

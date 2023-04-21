@@ -1,0 +1,197 @@
+{% extends 'base.html' %} {% block content %}
+<section id="AUTH" class="wrapper">
+  {% if page == 'login' %}
+  <div class="login-form">
+    <form action="" method="post">
+      <div class="title"><h2>LOGIN</h2></div>
+      {% for msg in messages %}
+      <small class="error">{{msg}}</small>
+      {% endfor %}
+      <div class="form-control">
+        <input type="text" placeholder="Username" required name="username" />
+      </div>
+      <div class="form-control flex flex-ai-c flex-jc-sb">
+        <input
+          id="id_password1"
+          class="flex-g"
+          type="password"
+          placeholder="Password"
+          required
+          name="password"
+        />
+        <div class="eyes">
+          <?xml version="1.0" ?><svg
+            id="eye-open"
+            class="bi bi-eye"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
+            />
+            <path
+              d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+            />
+          </svg>
+          <?xml version="1.0" ?><svg
+            id="eye-close"
+            class="bi bi-eye-slash"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"
+            />
+            <path
+              d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"
+            />
+            <path
+              d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"
+            />
+          </svg>
+        </div>
+      </div>
+      <button type="submit" class="btn">Login</button>
+      <div class="link">
+        <p>Havent signed yet? <a href="{% url 'register' %}">Register</a></p>
+      </div>
+    </form>
+  </div>
+  {% endif %} {% if page == 'register' %}
+  <div class="register-form">
+    <form action="" method="post">
+      <div class="title"><h2>REGISTER</h2></div>
+      <div class="form-control">{{form.first_name}}</div>
+      <div class="form-control">{{form.username}}</div>
+
+      <!-- <small class="error">Username already taken</small> -->
+      <div class="form-control">{{form.email}}</div>
+      <div class="form-control flex flex-ai-c flex-jc-sb">
+        {{form.password1}}
+        <div class="eyes">
+          <?xml version="1.0" ?><svg
+            id="eye-open"
+            class="bi bi-eye"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
+            />
+            <path
+              d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+            />
+          </svg>
+          <?xml version="1.0" ?><svg
+            id="eye-close"
+            class="bi bi-eye-slash"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"
+            />
+            <path
+              d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"
+            />
+            <path
+              d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="form-control flex flex-ai-c flex-jc-sb">
+        {{form.password2}}
+        <div class="eyes2">
+          <?xml version="1.0" ?><svg
+            id="eye-open-confirm"
+            class="bi bi-eye"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
+            />
+            <path
+              d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+            />
+          </svg>
+          <?xml version="1.0" ?><svg
+            id="eye-close-confirm"
+            class="bi bi-eye-slash"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"
+            />
+            <path
+              d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"
+            />
+            <path
+              d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"
+            />
+          </svg>
+        </div>
+      </div>
+      <!-- <small class="error">Username already taken</small>
+      <small class="error">Username already taken</small>
+      <small class="error">Username already taken</small> -->
+      <button type="submit" class="btn">Register</button>
+      <div class="link">
+        <p>Already signed? <a href="{% url 'login' %}">Login</a></p>
+      </div>
+    </form>
+  </div>
+  {% endif %}
+</section>
+<!-- js -->
+<script>
+  const eyes = document.querySelector('.eyes');
+  const eyes2 = document.querySelector('.eyes2');
+  eyes.addEventListener('click', () => {
+    if (eyes.classList.contains('active')) {
+      document.getElementById('id_password1').setAttribute('type', 'password');
+      document.getElementById('eye-close').style.display = 'block';
+      document.getElementById('eye-open').style.display = 'none';
+      eyes.classList.remove('active');
+    } else {
+      document.getElementById('id_password1').setAttribute('type', 'text');
+      document.getElementById('eye-close').style.display = 'none';
+      document.getElementById('eye-open').style.display = 'block';
+      eyes.classList.add('active');
+    }
+  });
+  eyes2.addEventListener('click', () => {
+    if (eyes2.classList.contains('active')) {
+      document.getElementById('id_password2').setAttribute('type', 'password');
+      document.getElementById('eye-close-confirm').style.display = 'block';
+      document.getElementById('eye-open-confirm').style.display = 'none';
+      eyes2.classList.remove('active');
+    } else {
+      document.getElementById('id_password2').setAttribute('type', 'text');
+      document.getElementById('eye-close-confirm').style.display = 'none';
+      document.getElementById('eye-open-confirm').style.display = 'block';
+      eyes2.classList.add('active');
+    }
+  });
+</script>
+{% endblock %}

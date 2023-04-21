@@ -1,0 +1,202 @@
+{% extends 'base.html' %}{% load static %}{% block content %}
+<section id="HOME" class="wrapper">
+  <div class="top">
+    <form class="search-form flex flex-jc-s flex-ai-c br-4">
+      <input type="text" placeholder="Search..." name="q" />
+      <button class="flex flex-jc-s flex-ai-c">
+        <?xml version="1.0" ?><svg
+          class="bi bi-search"
+          fill="#28a17d"
+          height="16"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+          />
+        </svg>
+      </button>
+    </form>
+    <ul class="category flex flex-ai-c flex-jc-c">
+      <li><span id="show-categories">Categories</span></li>
+      <li><a href="{% url 'create-post' %}">Create Post</a></li>
+      <div class="overlay"></div>
+      <ul class="category-list">
+        <div class="remove">
+          <?xml version="1.0" ?><svg
+            id="remove-category"
+            height="26"
+            viewBox="0 0 48 48"
+            width="32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M0 0h48v48h-48z" fill="none" />
+            <path
+              d="M29.17 16l-5.17 5.17-5.17-5.17-2.83 2.83 5.17 5.17-5.17 5.17 2.83 2.83 5.17-5.17 5.17 5.17 2.83-2.83-5.17-5.17 5.17-5.17-2.83-2.83zm-5.17-12c-11.05 0-20 8.95-20 20s8.95 20 20 20 20-8.95 20-20-8.95-20-20-20zm0 36c-8.82 0-16-7.18-16-16s7.18-16 16-16 16 7.18 16 16-7.18 16-16 16z"
+            />
+          </svg>
+        </div>
+        <li class="active"><a href="{% url 'home' %}">All</a></li>
+        {% for cat in category %}
+        <li><a href="?category={{cat.name}}">{{cat.name}}</a></li>
+        {% endfor %}
+      </ul>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="post-cards" style="position: relative">
+      {% if num_of_post == 0 %}
+      <div
+        style="
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <h1 style="color: rgb(18, 159, 98)">No Posts</h1>
+      </div>
+      {% endif %} {% for post in posts %}
+      <div class="card">
+        <a href="{% url 'post' post.id %}" class="img">
+          <img src="{{post.image.url}}" alt="" />
+        </a>
+        <div class="details flex flex-ai-c flex-jc-sb">
+          <div class="left flex flex-ai-c flex-jc-s">
+            <a href="{% url 'profile' post.author.id %}" class="img">
+              <img src="{{post.author.avatar.url}}" alt="" />
+            </a>
+            <div>
+              <p>{{post.author.first_name}}</p>
+              <a href="{% url 'profile' post.author.id %}" class="username"
+                >@{{post.author.username}}</a
+              >
+            </div>
+          </div>
+          <div class="right"><span>{{post.created|timesince}} ago</span></div>
+        </div>
+        <div class="body">
+          <a href="{% url 'post' post.id %}" class="title"
+            ><h3>{{post.title}}</h3></a
+          >
+          <p>{{post.body|truncatewords:30}}</p>
+        </div>
+        <div class="footer flex flex-ai-c flex-jc-sb">
+          <div class="like flex flex-ai-c flex-jc-sb">
+            <div
+              onclick="likePost('{{post.id}}',event)"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                cursor: pointer;
+              "
+            >
+              <div class="like-img">
+                {% if post.id in liked_posts %}
+                <img
+                  src="{% static '/assets/icons/liked.png' %}"
+                  alt=""
+                  style="width: 16px"
+                />
+                {% else %}
+                <?xml version="1.0" ?><svg
+                  class="bi bi-heart"
+                  fill="#28a17d"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"
+                  />
+                </svg>
+                {% endif %}
+              </div>
+            </div>
+            <span style="margin-left: 8px"
+              ><span class="like_count">{{post.like_count}} </span> Likes</span
+            >
+          </div>
+          <a href="?q={{post.category}}" class="tag"
+            ><span>{{post.category}}</span></a
+          >
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% include 'sidebar.html' %}
+    <div class="pagination flex flex-ai-c flex-jc-c">
+      <ul class="flex flex-ai-c flex-jc-sb p-links">
+        {% if posts.has_previous %}
+        <li class="first"><a href="?page=1">&laquo; first</a></li>
+        <li class="prev">
+          <a href="?page={{posts.previous_page_number}}">prev</a>
+        </li>
+        {% endif %} {% for i in nums %}
+        <li class="pagenumber">
+          <a href="?page={{forloop.counter}}">{{forloop.counter}}</a>
+        </li>
+        {% endfor %} {% if posts.has_next %}
+        <li class="next">
+          <a href="?page={{posts.next_page_number}}">next</a>
+        </li>
+        <li class="last">
+          <a href="?page={{posts.paginator.num_pages}}">last &raquo;</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  const likePost = (id, event) => {
+    elem =
+      event.target.parentElement.parentElement.parentElement.parentElement.getElementsByClassName(
+        'like_count'
+      )[0];
+    liked = event.target.parentElement;
+
+    myData = { id: id };
+
+    if (user === 'AnonymousUser') {
+      window.location.href = 'http://127.0.0.1:8000/account/login';
+    } else {
+      $.ajax({
+        url: "{% url 'like-post' %}",
+        type: 'POST',
+        data: myData,
+        success: (data) => {
+          elem.innerText = data.like;
+          if (data.liked) {
+            liked.innerHTML = ` <img
+                  src="./static/assets/icons/liked.png"
+                  alt=""
+                  style="width: 16px"
+                  />`;
+          } else {
+            liked.innerHTML = ` <?xml version="1.0" ?><svg
+                  class="bi bi-heart"
+                  fill="#28a17d"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"
+                  />
+                </svg>`;
+          }
+        },
+      });
+    }
+  };
+</script>
+{% endblock %}

@@ -1,0 +1,68 @@
+@use './functions.scss' as *;
+@use './breakpoints.scss' as *;
+
+.wrapper {
+  max-width: rem(1200);
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+  &-jc-c {
+    justify-content: center;
+  }
+  &-d-c {
+    flex-direction: column;
+  }
+  &-g {
+    flex-grow: 1;
+  }
+  &-jc-sb {
+    justify-content: space-between;
+  }
+  &-jc-e {
+    justify-content: flex-end;
+  }
+  &-ai-str {
+    align-items: flex-start;
+  }
+  &-jc-sa {
+    justify-content: space-around;
+  }
+  &-ai-c {
+    align-items: center;
+  }
+}
+
+.br-4 {
+  border-radius: rem(4);
+  overflow: hidden;
+}
+.br-8 {
+  border-radius: rem(8);
+}
+
+ul,
+p,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+a,
+a:active {
+  color: #000;
+  text-decoration: none;
+}
+
+.hide-desktop {
+  @include breakpoint-up(lr) {
+    display: none;
+  }
+}
+
+.hide-mobile {
+  @include breakpoint-down(md) {
+    display: none;
+  }
+}

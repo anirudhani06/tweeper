@@ -1,0 +1,76 @@
+@use '../styles' as *;
+
+#CREATE_UPDATE {
+  padding-top: rem(80);
+  height: 100vh;
+  .create-post {
+    padding: rem(12);
+    .create-form {
+      background-color: var(--card-bg);
+      border-radius: rem(4);
+      box-shadow: 0 0 rem(12) rgba(0, 0, 0, 0.126);
+      padding: rem(12);
+      max-width: rem(600);
+      margin: 0 auto;
+      .title {
+        text-align: center;
+        a {
+          svg {
+            fill: var(--green);
+          }
+        }
+        h3 {
+          font-weight: 600;
+          color: var(--green);
+          margin-top: 0;
+        }
+      }
+      form {
+        .img {
+          width: 100%;
+          max-height: rem(300);
+          overflow: hidden;
+          border-radius: rem(4);
+          margin-bottom: rem(8);
+          img {
+            width: 100%;
+            max-height: rem(300);
+          }
+        }
+
+        input {
+          width: 100%;
+          height: 100%;
+          border: 1px solid var(--green);
+          outline: none;
+          background: transparent;
+          padding: rem(8) rem(12);
+          margin-bottom: rem(8);
+          border-radius: rem(4);
+          color: var(--txt);
+        }
+        textarea {
+          width: 100%;
+          height: rem(200);
+          border: 1px solid var(--green);
+          outline: none;
+          background: transparent;
+          padding: rem(6) rem(12);
+          border-radius: rem(4);
+          color: var(--txt);
+        }
+
+        .btn {
+          width: 100%;
+          background-color: var(--green);
+          border-radius: rem(4);
+          cursor: pointer;
+          border: none;
+          outline: transparent;
+          padding: rem(12);
+          color: var(--white);
+        }
+      }
+    }
+  }
+}

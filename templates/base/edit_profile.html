@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% block content %}
+<section id="UPDATE_PROFILE" class="wrapper">
+  <div class="user-form">
+    <form action="" method="post" enctype="multipart/form-data">
+      <div class="title"><h2>UPDATE</h2></div>
+      <div class="form-img">
+        <div class="img">
+          <img src="{{user.avatar.url}}" alt="" id="profile" />
+        </div>
+        <input
+          type="file"
+          id="dp"
+          style="display: none"
+          name="profile-pic"
+          onchange="previewImage(event)"
+        />
+        <label for="dp">Change Profile Photo</label>
+      </div>
+      <div class="form-control">
+        <input
+          type="text"
+          placeholder="Name"
+          required
+          name="name"
+          value="{{user.first_name}}"
+        />
+      </div>
+      <div class="form-control">
+        <input
+          type="text"
+          placeholder="Username"
+          required
+          name="username"
+          value="{{user.username}}"
+        />
+      </div>
+      <!-- <small class="error">Username already taken</small> -->
+      <div class="form-control">
+        <input
+          type="email"
+          placeholder="Email"
+          required
+          name="email"
+          value="{{user.email}}"
+        />
+      </div>
+      <div class="form-control">
+        <input
+          type="text"
+          placeholder="Website"
+          name="website"
+          value="{{user.website}}"
+        />
+      </div>
+
+      <div class="form-control">
+        <textarea name="bio" placeholder="Write about yourself...">
+{{user.bio}}</textarea
+        >
+      </div>
+
+      <button type="submit" class="btn">Update</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  const previewImage = (event) => {
+    if (event.target.files.length > 0) {
+      let src = URL.createObjectURL(event.target.files[0]);
+      let preview = document.getElementById('profile');
+      preview.src = src;
+    }
+  };
+</script>
+{% endblock %}

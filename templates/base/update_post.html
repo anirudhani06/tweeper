@@ -1,0 +1,70 @@
+{% extends 'base.html' %} {% block content %}
+<section id="CREATE_UPDATE" class="wrapper">
+  <div class="create-post">
+    <div class="create-form">
+      <div class="title flex flex-jc-sb flex-ai-c">
+        <a href="">
+          <?xml version="1.0" ?><svg
+            class="bi bi-arrow-left-short"
+            fill="currentColor"
+            height="28"
+            viewBox="0 0 16 16"
+            width="28"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </a>
+        <h3>Create Post</h3>
+      </div>
+      <form action="" method="post" enctype="multipart/form-data">
+        <div class="img" id="preview-image">
+          <img src="{{post.image.url}}" alt="" id="preview" />
+        </div>
+        <input type="file" name="image" onchange="previewImage(event)" />
+        <input
+          type="text"
+          name="title"
+          placeholder="Title"
+          required
+          value="{{post.title}}"
+        />
+
+        <input
+          type="text"
+          name="category"
+          list="categ"
+          placeholder="Category"
+          value="{{post.category.name}}"
+          required
+        />
+        <datalist id="categ">
+          <select name="">
+            {% for cat in categories %}
+            <option value="{{cat}}">{{cat}}</option>
+            {% endfor %}
+          </select>
+        </datalist>
+        <textarea name="body" placeholder="Write Your Caption Here.." required>
+{{post.body}}</textarea
+        >
+
+        <button class="btn" type="submit">Upload</button>
+      </form>
+    </div>
+  </div>
+</section>
+<script>
+  const previewImage = (event) => {
+    if (event.target.files.length > 0) {
+      let src = URL.createObjectURL(event.target.files[0]);
+      let preview = document.getElementById('preview');
+      preview.src = src;
+      document.getElementById('preview-image').style.display = 'block';
+    }
+  };
+</script>
+{% endblock %}
